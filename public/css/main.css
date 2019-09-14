@@ -1,4 +1,133 @@
+/* =====================
+| | VARIABLES
+===================== */
+
+:root {
+  --font-text: 'Raleway', sans-serif;
+  --font-title: 'Alegreya', serif;
+  --royal-red: #D82D24;
+  --royal-purple: #5C4A85;
+  --dark-brown: #8C3E24;
+  --gold: #EEA745;
+  --light-brown: #F7E4C2;
+}
+
+/* =====================
+| | MOBILE VIEW
+===================== */
+
+/* ===== GENERAL ==== */
+
+* {
+  border: 1px solid gold;
+}
+
+body {
+  margin: 0 auto;
+  font-family: var(--font-text);
+}
+
+/* ===== HEADER ===== */
+
+header {
+  background-color: var(--dark-brown);
+}
+
+h1 {
+  font-family: var(--font-title);
+  font-size: 3em;
+  margin: 2%;
+  color: var(--gold);
+  text-shadow: 1px 1px black;
+}
+
+header ul {
+  margin: 0 0 2% 2%;
+  padding: 0;
+  list-style: none;
+}
+
+header li {
+  color: var(--gold);
+  font-size: 1.1em;
+  display: inline;
+}
+
+header a, header a:visited {
+  color: var(--gold);
+}
+
+  /* ===== LOG IN ===== */
+
+/* ====== GAME ====== */
+
+.game-devQuest {
+  margin: 0 auto;
+  text-align: center;
+}
+
 #game-content {
-  width: 320,
-  height: 240
+  margin: 0 auto;
+  width: 500;
+  height: 400;
+}
+
+/* === NAVIGATION === */
+
+.profile-image img {
+  width: 100px;
+  border-radius: 100px;
+}
+
+/* ====== MAIN ====== */
+
+  /* ===== PROFILE ==== */
+
+  /* ===== FORUMS ===== */
+
+  /* ====== ABOUT ===== */
+
+/* ===== FOOTER ===== */
+
+
+/* =====================
+| | BROWSER VIEW
+===================== */
+
+@media only screen and (min-width: 600px) {
+
+  /* ===== GENERAL ==== */
+
+  .wrapper {
+    margin: 0 auto;
+    max-width: 950px;
+  }
+
+  /* ===== HEADER ===== */
+
+    /* ===== LOG IN ===== */
+
+  /* === NAVIGATION === */
+
+    nav {
+      width: 30%;
+      min-width: 200px;
+    }
+
+  /* ====== MAIN ====== */
+
+    .container {
+      display: flex;
+    }
+
+    /* ====== GAME ====== */
+
+    /* ===== PROFILE ==== */
+
+    /* ===== FORUMS ===== */
+
+    /* ====== ABOUT ===== */
+
+  /* ===== FOOTER ===== */
+
 }

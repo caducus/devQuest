@@ -2,8 +2,15 @@ const app = angular.module("devQuestApp", []);
 
 app.controller("MainController", ["$http", function($http) {
   const controller = this;
+
+  // both create and log in forms are not visible
+  this.showNewForm = false;
   this.showLogInForm = false;
 
+  // set initial index "show" page to the game
+  this.includePath = "partials/introduction.html"
+
+  // create new user
   this.createUser = () => {
     $http({
       method: "POST",
@@ -22,6 +29,7 @@ app.controller("MainController", ["$http", function($http) {
     });
   }
 
+  // log in with existing user
   this.logIn = () => {
     $http({
       method: "POST",
@@ -41,6 +49,7 @@ app.controller("MainController", ["$http", function($http) {
     });
   }
 
+  // log out
   this.logOut = () => {
     $http({
       method: "DELETE",
@@ -53,6 +62,7 @@ app.controller("MainController", ["$http", function($http) {
     });
   }
 
+  // fetch and assign current user data to variables for use
   this.isLoggedIn = () => {
     $http({
       method: "GET",
@@ -63,6 +73,11 @@ app.controller("MainController", ["$http", function($http) {
     }, (error) => {
       console.log(error.data);
     });
+  }
+
+  // navigation and controlling partials
+  this.changeInclude = (path) => {
+    this.includePath = "partials/" + path + ".html"
   }
 
 }]);

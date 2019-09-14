@@ -24,19 +24,25 @@
     <!-- =======================
     | | HEADER
     ======================== -->
-    <header>
-      <h1>devQuest</h1>
-      <ul>
-        <li ng-if="!ctrl.loggedInUser"
-            ng-click="ctrl.showNewForm = !ctrl.showNewForm ; ctrl.showLogInForm = false"
-        ><a href="#">Create User</a> || </li>
-        <li ng-if="!ctrl.loggedInUser"
-            ng-click="ctrl.showLogInForm = !ctrl.showLogInForm ; ctrl.showNewForm = false"
-        ><a href="#">Log In</a></li>
-        <li ng-if="ctrl.loggedInUser"
-            ng-click="ctrl.logOut()"
-        ><a href="#">Log Out</a></li>
-      </ul>
+    <div class="wrapper">
+      <header>
+        <div>
+          <h1>devQuest</h1>
+        </div>
+        <div>
+          <ul>
+            <li ng-if="!ctrl.loggedInUser"
+                ng-click="ctrl.showNewForm = !ctrl.showNewForm ; ctrl.showLogInForm = false"
+            ><a href="#">Create User</a> || </li>
+            <li ng-if="!ctrl.loggedInUser"
+                ng-click="ctrl.showLogInForm = !ctrl.showLogInForm ; ctrl.showNewForm = false"
+            ><a href="#">Log In</a></li>
+            <li ng-if="ctrl.loggedInUser"
+                ng-click="ctrl.logOut()"
+            ><a href="#">Log Out</a></li>
+          </ul>
+        </div>
+      </header>
       <div class="userForms">
         <form ng-if="ctrl.showNewForm"
               ng-submit="ctrl.createUser()">
@@ -51,22 +57,38 @@
           <input type="submit" value="Log In">
         </form>
       </div>
-    </header>
-    <!-- =======================
-    | | NAVIGATION
-    ======================== -->
-    <nav>
-    </nav>
-    <!-- =======================
-    | | MAIN
-    ======================== -->
-    <main>
-      <div id="game-content"></div>
-    </main>
-    <!-- =======================
-    | | FOOTER
-    ======================== -->
-    <footer>
-    </footer>
+      <!-- =======================
+      | | GAME
+      ======================== -->
+      <div class="game-devQuest">
+        <div id="game-content"></div>
+      </div>
+      <!-- =======================
+      | | NAVIGATION
+      ======================== -->
+      <div class="container">
+        <!-- <nav ng-if="ctrl.loggedInUser"> -->
+        <nav>
+          <h3>Welcome, {{ ctrl.loggedInUser }}</h3>
+          <div class="profile-image">
+            <img src="./images/placeholder.jpg" alt="placeholder">
+          </div>
+          <div ng-include=" 'partials/navigation.html' ">
+            <!-- NAVIGATION.HTML -->
+          </div>
+        </nav>
+      <!-- =======================
+      | | MAIN
+      ======================== -->
+        <main ng-include="ctrl.includePath">
+          <!-- ALL PARTIALS DISPLAY HERE -->
+        </main>
+      </div>
+      <!-- =======================
+      | | FOOTER
+      ======================== -->
+      <footer>
+      </footer>
+    </div>
   </body>
 </html>
