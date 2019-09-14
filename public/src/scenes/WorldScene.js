@@ -8,7 +8,7 @@ class WorldScene extends Phaser.Scene {
   create() {
     const map = this.make.tilemap({key: "map"});
     const tiles = map.addTilesetImage("spritesheet", "tiles");
-    const grass = map.createDynamicLayer("Grass", tiles, 0, 0);
+    const grass = map.createStaticLayer("Grass", tiles, 0, 0);
     const trees1 = map.createDynamicLayer("Trees1", tiles, 0, 0);
     const trees2 = map.createDynamicLayer("Trees2", tiles, 0, 0);
 
@@ -19,6 +19,9 @@ class WorldScene extends Phaser.Scene {
     this.physics.world.bounds.width = map.widthInPixels;
     this.physics.world.bounds.height = map.heightInPixels;
     this.player.setCollideWorldBounds(true);
+
+    this.physics.add.collider(this.player, trees1);
+    this.physics.add.collider(this.player, trees2);
 
     this.cursors = this.input.keyboard.createCursorKeys();
 
