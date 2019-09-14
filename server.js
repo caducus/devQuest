@@ -12,7 +12,7 @@ require("dotenv").config();
 // Controllers
 // =======================
 
-const usersController = require("./controllers/user.js");
+const usersController = require("./controllers/users.js");
 const sessionsController = require("./controllers/sessions.js");
 
 // =======================
@@ -20,6 +20,7 @@ const sessionsController = require("./controllers/sessions.js");
 // =======================
 
 const app = express();
+const port = 3000;
 const port = process.env.PORT || 3000;
 
 const MONGODB_URI = process.env.MONGODB_URI

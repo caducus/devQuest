@@ -4,19 +4,67 @@
     <meta charset="utf-8">
     <title>devQuest</title>
     <!-- =======================
-    | | Scripts
+    | | SCRIPTS
     ======================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
+    <script src="./js/app.js" charset="utf-8"></script>
     <script type="text/javascript" src="./src/phaser.js"></script>
     <script type="text/javascript" src="./src/scenes/LoadingScene.js"></script>
     <script type="text/javascript" src="./src/scenes/MainMenuScene.js"></script>
     <script type="text/javascript" src="./src/scenes/WorldScene.js"></script>
     <script type="text/javascript" src="./src/game.js"></script>
     <!-- =======================
-    | | Stylesheets
+    | | STYLESHEETS
     ======================== -->
     <link rel="stylesheet" href="./css/master.css">
   </head>
-  <body>
-
+  <body ng-controller="MainController as ctrl">
+    <!-- =======================
+    | | HEADER
+    ======================== -->
+    <header>
+      <h1>devQuest</h1>
+      <ul>
+        <li ng-if="!ctrl.loggedInUser"
+            ng-click="ctrl.showNewForm = !ctrl.showNewForm ; ctrl.showLogInForm = false"
+        ><a href="#">Create User</a> || </li>
+        <li ng-if="!ctrl.loggedInUser"
+            ng-click="ctrl.showLogInForm = !ctrl.showLogInForm ; ctrl.showNewForm = false"
+        ><a href="#">Log In</a></li>
+        <li ng-if="ctrl.loggedInUser"
+            ng-click="ctrl.logOut()"
+        ><a href="#">Log Out</a></li>
+      </ul>
+      <div class="userForms">
+        <form ng-if="ctrl.showNewForm"
+              ng-submit="ctrl.createUser()">
+          <input type="text" placeholder="username" ng-model="ctrl.createdUsername" />
+          <input type="password" placeholder="password" ng-model="ctrl.createdPassword">
+          <input type="submit" value="Create">
+        </form>
+        <form ng-if="ctrl.showLogInForm"
+              ng-submit="ctrl.logIn()">
+          <input type="text" placeholder="username" ng-model="ctrl.username" />
+          <input type="password" placeholder="password" ng-model="ctrl.password">
+          <input type="submit" value="Log In">
+        </form>
+      </div>
+    </header>
+    <!-- =======================
+    | | NAVIGATION
+    ======================== -->
+    <nav>
+    </nav>
+    <!-- =======================
+    | | MAIN
+    ======================== -->
+    <main>
+      <div id="game-content"></div>
+    </main>
+    <!-- =======================
+    | | FOOTER
+    ======================== -->
+    <footer>
+    </footer>
   </body>
 </html>

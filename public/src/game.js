@@ -1,6 +1,6 @@
 let config = {
   type: Phaser.AUTO,
-  parent: "content",
+  parent: "game-content",
   width: 320, //644,
   height: 240, //486,
   zoom: 2,
