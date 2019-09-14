@@ -20,15 +20,22 @@ const sessionsController = require("./controllers/sessions.js");
 // =======================
 
 const app = express();
-const port = 3000;
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-const MONGODB_URI = process.env.MONGODB_URI
+const MONGODB_URI = process.env.MONGODB_URI;
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 mongoose.connection.once("open", () => {
   console.log("Connected to Mongoose.");
 });
+
+// ==========================
+// DB Error / Success
+// ==========================
+
+mongoose.connection.on("error", (error) => console.log(error.message + " is Mongod not running?"));
+mongoose.connection.on("connected", () => console.log("Mongo connected: ", MONGODB_URI));
+mongoose.connection.on("disconnected", () => console.log("Mongo disconnected."));
 
 // ==========================
 // Fix Deprecation Warnings
@@ -70,6 +77,6 @@ app.get("/loggedin", (req, res) => {
 // Listener
 // =======================
 
-app.listen(port, () => {
-  console.log("I'm totes listenin' on port: " + port);
+app.listen(PORT, () => {
+  console.log("I'm totes listenin' on port: " + PORT);
 });
