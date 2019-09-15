@@ -5,7 +5,8 @@ app.controller("MainController", ["$http", function($http) {
   // set the following to not visible
   this.showNewForm = false;
   this.showLogInForm = false;
-  this.indexOfEditForm = false;
+  this.indexOfEditForm = null;
+  this.indexOfUserBio = null;
 
   // set initial index "show" page to the introduction
   this.includePath = "partials/introduction.html"

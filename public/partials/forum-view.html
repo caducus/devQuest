@@ -13,16 +13,17 @@
             <img ng-src="{{ post.avatar }}" alt="avatar of post author">
           </div>
         </div>
-        <p>{{ post.post }}</p>
+        <p style="white-space: pre-line">{{ post.post }}</p>
       </div>
       <div>
-        <div>
+        <div class="edit-delete">
           <ul ng-if="ctrl.loggedInUser._id === post.user_id">
-            <li ng-click="ctrl.indexOfEditForm = !ctrl.indexOfEditForm">Edit</li>
-            <li ng-click="ctrl.deletePost(post)">Delete</li>
+            <li ng-click="ctrl.indexOfEditForm = $index"
+                ng-dblclick="ctrl.indexOfEditForm = null"><a href="#">Edit</a></li>
+            <li ng-click="ctrl.deletePost(post)"><a href="#">Delete</a></li>
           </ul>
         </div>
-        <form ng-if="ctrl.indexOfEditForm" ng-submit="ctrl.editPost(post)">
+        <form ng-if="ctrl.indexOfEditForm === $index" ng-submit="ctrl.editPost(post)">
           <fieldset>
             <legend>Edit Your Post</legend>
             <label for="updatedTitle">Title:</label>

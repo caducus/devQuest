@@ -3,9 +3,17 @@
   <h2 ng-if="!ctrl.loggedInUser">This is where you can view the profiles of all devQuest users, provided that you yourself are a devQuest user. If you aren't, it's super easy to create a new account. If you are, why don't you try logging in?</h2>
   <div ng-if="ctrl.loggedInUser" class="all-users">
     <div class="single-user" ng-repeat="user in ctrl.users">
-      <img ng-src="{{user.avatar}}" alt="">
-      <h2>{{ user.username }}</h2>
-      <p>{{ user.bio }}</p>
+      <div class="center-align profile-card">
+        <div>
+          <img ng-src="{{user.avatar}}" alt="">
+        </div>
+        <div>
+          <h2 ng-click="ctrl.indexOfUserBio = $index">{{ user.username }}</h2>
+        </div>
+      </div>
+      <div ng-if="ctrl.indexOfUserBio === $index">
+        <p style="white-space: pre-line">{{ user.bio }}</p>
+      </div>
     </div>
   </div>
 </div>

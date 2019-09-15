@@ -1,7 +1,7 @@
 <div class="main-content">
   <!-- NOTICE FOR VIEWERS WHO ARE NOT LOGGED IN -->
   <h2 ng-if="!ctrl.loggedInUser">Do you have a burning desire to post to this forum? Create an account, log in, and this power can be yours.</h2>
-  <form ng-if="ctrl.loggedInUser
+  <form ng-if="ctrl.loggedInUser"
         ng-submit="ctrl.newPost(ctrl.loggedInUser)">
     <input type="text" placeholder="title of post" ng-model="ctrl.postTitle" />
     <textarea type="text" ng-model="ctrl.postBody"></textarea>

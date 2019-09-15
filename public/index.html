@@ -41,9 +41,6 @@
             <li ng-if="!ctrl.loggedInUser"
                 ng-click="ctrl.showLogInForm = !ctrl.showLogInForm ; ctrl.showNewForm = false"
             ><a href="#">Log In</a></li>
-            <li ng-if="ctrl.loggedInUser"
-                ng-click="ctrl.logOut()"
-            ><a href="#">Log Out</a></li>
           </ul>
         </div>
       </header>
@@ -73,7 +70,7 @@
       <div class="container">
         <nav ng-if="ctrl.loggedInUser">
         <!-- <nav> -->
-          <h3>Welcome, {{ ctrl.loggedInUser.username }}</h3>
+          <h3 class="highlight">Welcome, {{ ctrl.loggedInUser.username }}</h3>
           <div class="profile-image">
             <img ng-src="{{ctrl.loggedInUser.avatar}}" alt="placeholder">
           </div>
