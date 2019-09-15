@@ -1,6 +1,7 @@
 <div class="main-content">
-  <h2>This is where forum posts can be viewed when you're logged in. If you're not logged in, all you get is sass and a sad violin.</h2>
-  <div class="forum-posts">
+  <!-- NOTICE FOR VIEWERS WHO ARE NOT LOGGED IN -->
+  <h2 ng-if="!ctrl.loggedInUser">This is where forum posts can be viewed when you're logged in. If you're not logged in, all you get is sass and a sad violin.</h2>
+  <div ng-if="ctrl.loggedInUser" class="forum-posts">
     <div class="post-card" ng-repeat="post in ctrl.posts">
       <div>
         <div class="flex-align">

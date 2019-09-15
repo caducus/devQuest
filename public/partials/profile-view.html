@@ -1,6 +1,7 @@
 <div class="main-content">
-  <h2>View all users here</h2>
-  <div class="all-users">
+  <!-- NOTICE FOR VIEWERS WHO ARE NOT LOGGED IN -->
+  <h2 ng-if="!ctrl.loggedInUser">This is where you can view the profiles of all devQuest users, provided that you yourself are a devQuest user. If you aren't, it's super easy to create a new account. If you are, why don't you try logging in?</h2>
+  <div ng-if="ctrl.loggedInUser" class="all-users">
     <div class="single-user" ng-repeat="user in ctrl.users">
       <img ng-src="{{user.avatar}}" alt="">
       <h2>{{ user.username }}</h2>
