@@ -9,11 +9,15 @@
     ======================== -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
     <script src="./js/app.js" charset="utf-8"></script>
+    <!-- PHASER GAME -->
     <script type="text/javascript" src="./src/phaser.js"></script>
     <script type="text/javascript" src="./src/scenes/LoadingScene.js"></script>
     <script type="text/javascript" src="./src/scenes/MainMenuScene.js"></script>
     <script type="text/javascript" src="./src/scenes/WorldScene.js"></script>
     <script type="text/javascript" src="./src/game.js"></script>
+    <!-- IONICONS -->
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
     <!-- =======================
     | | STYLESHEETS
     ======================== -->
@@ -24,19 +28,25 @@
     <!-- =======================
     | | HEADER
     ======================== -->
-    <header>
-      <h1>devQuest</h1>
-      <ul>
-        <li ng-if="!ctrl.loggedInUser"
-            ng-click="ctrl.showNewForm = !ctrl.showNewForm ; ctrl.showLogInForm = false"
-        ><a href="#">Create User</a> || </li>
-        <li ng-if="!ctrl.loggedInUser"
-            ng-click="ctrl.showLogInForm = !ctrl.showLogInForm ; ctrl.showNewForm = false"
-        ><a href="#">Log In</a></li>
-        <li ng-if="ctrl.loggedInUser"
-            ng-click="ctrl.logOut()"
-        ><a href="#">Log Out</a></li>
-      </ul>
+    <div class="wrapper">
+      <header>
+        <div>
+          <h1>devQuest</h1>
+        </div>
+        <div>
+          <ul>
+            <li ng-if="!ctrl.loggedInUser"
+                ng-click="ctrl.showNewForm = !ctrl.showNewForm ; ctrl.showLogInForm = false"
+            ><a href="#">Create User</a> || </li>
+            <li ng-if="!ctrl.loggedInUser"
+                ng-click="ctrl.showLogInForm = !ctrl.showLogInForm ; ctrl.showNewForm = false"
+            ><a href="#">Log In</a></li>
+            <li ng-if="ctrl.loggedInUser"
+                ng-click="ctrl.logOut()"
+            ><a href="#">Log Out</a></li>
+          </ul>
+        </div>
+      </header>
       <div class="userForms">
         <form ng-if="ctrl.showNewForm"
               ng-submit="ctrl.createUser()">
@@ -51,22 +61,42 @@
           <input type="submit" value="Log In">
         </form>
       </div>
-    </header>
-    <!-- =======================
-    | | NAVIGATION
-    ======================== -->
-    <nav>
-    </nav>
-    <!-- =======================
-    | | MAIN
-    ======================== -->
-    <main>
-      <div id="game-content"></div>
-    </main>
-    <!-- =======================
-    | | FOOTER
-    ======================== -->
-    <footer>
-    </footer>
+      <!-- =======================
+      | | GAME
+      ======================== -->
+      <div class="game-devQuest">
+        <div id="game-content"></div>
+      </div>
+      <!-- =======================
+      | | NAVIGATION
+      ======================== -->
+      <div class="container">
+        <!-- <nav ng-if="ctrl.loggedInUser"> -->
+        <nav>
+          <h3>Welcome, {{ ctrl.loggedInUser }}</h3>
+          <div class="profile-image">
+            <img src="./images/placeholder.jpg" alt="placeholder">
+          </div>
+          <div ng-include=" 'partials/navigation.html' ">
+            <!-- NAVIGATION.HTML -->
+          </div>
+        </nav>
+      <!-- =======================
+      | | MAIN
+      ======================== -->
+        <main ng-include="ctrl.includePath">
+          <!-- ALL PARTIALS DISPLAY HERE -->
+        </main>
+      </div>
+      <!-- =======================
+      | | FOOTER
+      ======================== -->
+      <footer>
+        <a href="mailto: contact-me@becka.dev" target="_blank"><ion-icon size="large" name="mail"></ion-icon></a>
+        <a href="https://github.com/caducus" target="_blank"><ion-icon size="large" name="logo-github"></ion-icon></a>
+        <a href="https://twitter.com/CaducusRed" target="_blank"><ion-icon size="large" name="logo-twitter"></ion-icon></a>
+        <a href="https://www.linkedin.com/in/rebecca-catanzaro/" target="_blank"><ion-icon size="large" name="logo-linkedin"></ion-icon></a>
+      </footer>
+    </div>
   </body>
 </html>

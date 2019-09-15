@@ -27,6 +27,12 @@ body {
   font-family: var(--font-text);
 }
 
+.flex-align {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* ===== HEADER ===== */
 
 header {
@@ -74,6 +80,20 @@ header a, header a:visited {
 
 /* === NAVIGATION === */
 
+nav {
+  text-align: center;
+}
+
+nav ul {
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline;
+  margin: 0 10px;
+}
+
 .profile-image img {
   width: 100px;
   border-radius: 100px;
@@ -81,13 +101,45 @@ header a, header a:visited {
 
 /* ====== MAIN ====== */
 
+  .main-content {
+    margin: 0 auto;
+    width: 95%;
+  }
+
   /* ===== PROFILE ==== */
 
   /* ===== FORUMS ===== */
 
+  .forum-posts {
+    width: 95%;
+  }
+
+  .post-card {
+    border: 1px solid grey;
+    border-radius: 5px;
+  }
+
+  .post-card img {
+    width: 75px;
+    border-radius: 100px;
+  }
+
+  .post-card h2 {
+    margin: 0;
+  }
+
+  .post-card h3 {
+    margin: 5px 0 0 15px;
+  }
+
   /* ====== ABOUT ===== */
 
 /* ===== FOOTER ===== */
+
+  footer {
+    padding: 1.5%;
+    text-align: center;
+  }
 
 
 /* =====================
@@ -114,10 +166,20 @@ header a, header a:visited {
       min-width: 200px;
     }
 
+    nav li {
+      margin: 0;
+      display: block;
+    }
+
   /* ====== MAIN ====== */
 
     .container {
       display: flex;
+    }
+
+    .main-content {
+      overflow-y: auto;
+      height: 400px;
     }
 
     /* ====== GAME ====== */

@@ -14,6 +14,7 @@ require("dotenv").config();
 
 const usersController = require("./controllers/users.js");
 const sessionsController = require("./controllers/sessions.js");
+const postsController = require("./controllers/posts.js");
 
 // =======================
 // Configuration
@@ -57,6 +58,7 @@ app.use(session({
 }));
 app.use("/users", usersController);
 app.use("/sessions", sessionsController);
+app.use("/posts", postsController);
 
 // =======================
 // Routes

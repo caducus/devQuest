@@ -1,3 +1,45 @@
-<div>
-  <h2>All forum posts can be viewed here</h2>
+<div class="main-content">
+  <h2>This is where forum posts can be viewed when you're logged in. If you're not logged in, all you get is sass and a sad violin.</h2>
+  <div class="forum-posts">
+    <div class="post-card" ng-repeat="post in ctrl.posts">
+      <div>
+        <div class="flex-align">
+          <div>
+            <h2>{{ post.title }}</h2>
+            <h3>Posted by: {{ post.username }}</h3>
+          </div>
+          <div>
+            <img ng-src="{{ post.avatar }}" alt="avatar of post author">
+          </div>
+        </div>
+        <p>{{ post.post }}</p>
+      </div>
+      <div>
+        <div>
+          <ul ng-if="ctrl.loggedInUserID._id === post.user_id">
+            <li ng-click="ctrl.indexOfEditForm = !ctrl.indexOfEditForm">Edit</li>
+            <li ng-click="ctrl.deletePost(post)">Delete</li>
+          </ul>
+        </div>
+        <form ng-if="ctrl.indexOfEditForm" ng-submit="ctrl.editPost(post)">
+          <fieldset>
+            <legend>Edit Your Post</legend>
+            <label for="updatedTitle">Title:</label>
+            <input  type="text"
+                    id="updatedTitle"
+                    ng-value="post.title"
+                    ng-model="ctrl.updatedTitle"
+            />
+            <label for="updatedPost">Post:</label>
+            <textarea type="text"
+                      id="updatedPost"
+                      ng-value="post.post"
+                      ng-model="ctrl.updatedPost">
+            </textarea>
+          </fieldset>
+          <input type="submit" value="Update Post">
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
