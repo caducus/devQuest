@@ -39,6 +39,10 @@ input:focus, textarea:focus {
   text-align: center;
 }
 
+.right-align {
+  text-align: right;
+}
+
 /* ===== HEADER ===== */
 
 header {
@@ -92,9 +96,20 @@ header a:hover {
     width: 25%;
   }
 
-  .userForms input[type=submit] {
-    background-color: var(--color-dark-green);
+  input[type=submit] {
+    margin: 5px;
+    height: 30px;
+    width: 20%;
     border-radius: 5px;
+    background-color: var(--color-dark-green);
+    color: var(--color-white);
+    border: 1px solid var(--color-elec-purple);
+  }
+
+  input[type=submit]:hover {
+    background-color: var(--color-elec-purple);
+    border: 1px solid var(--color-elec-pink);
+    color: var(--color-elec-pink);
   }
 
 /* ====== GAME ====== */
@@ -134,6 +149,7 @@ nav li, .post-card li {
 }
 
 nav a, nav a:visited {
+  text-decoration: none;
   color: var(--color-elec-purple);
 }
 
@@ -190,6 +206,40 @@ nav a:hover {
   .all-users img {
     width: 50px;
     border-radius: 100px;
+  }
+
+  /* Hover animation used from here: */
+  /* https://tobiasahlin.com/blog/css-trick-animating-link-underlines/ */
+
+  .single-user a {
+    position: relative;
+    color: var(--color-grey);
+    text-decoration: none;
+  }
+
+  .single-user a:hover {
+    color: var(--color-grey);
+  }
+
+  .single-user a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-elec-pink);
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  .single-user a:hover:before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
   }
 
   /* == PROFILE: POST = */
@@ -261,10 +311,6 @@ nav a:hover {
   .edit-delete {
     text-align: right;
   }
-
-  /* == FORUM: POST === */
-
-  /* ====== ABOUT ===== */
 
 /* ===== FOOTER ===== */
 
