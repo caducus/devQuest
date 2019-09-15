@@ -5,11 +5,11 @@
 :root {
   --font-text: 'Raleway', sans-serif;
   --font-title: 'Alegreya', serif;
-  --royal-red: #D82D24;
-  --royal-purple: #5C4A85;
-  --dark-brown: #8C3E24;
-  --gold: #EEA745;
-  --light-brown: #F7E4C2;
+  --color-grey: #292F36;
+  --color-elec-pink: #F4008B;
+  --color-dark-green: #0B3C49;
+  --color-elec-purple: #530082;
+  --color-white: #FFFCFF;
 }
 
 /* =====================
@@ -18,13 +18,14 @@
 
 /* ===== GENERAL ==== */
 
-* {
-  border: 1px solid gold;
-}
-
 body {
   margin: 0 auto;
   font-family: var(--font-text);
+  background-image: url("/images/dark-honeycomb.png");
+}
+
+input:focus, textarea:focus {
+  outline: none;
 }
 
 .flex-align {
@@ -36,34 +37,60 @@ body {
 /* ===== HEADER ===== */
 
 header {
-  background-color: var(--dark-brown);
+  margin: 0;
+  background-color: var(--color-grey);
 }
 
 h1 {
   font-family: var(--font-title);
   font-size: 3em;
-  margin: 2%;
-  color: var(--gold);
-  text-shadow: 1px 1px black;
+  margin: 0 0 0 2%;
+  color: var(--color-elec-purple);
+	text-shadow:
+	-1px -1px 0 var(--color-white),
+	1px -1px 0 var(--color-white),
+	-1px 1px 0 var(--color-white),
+	1px 1px 0 var(--color-white);
 }
 
 header ul {
-  margin: 0 0 2% 2%;
+  margin: 0 0 0 2%;
   padding: 0;
   list-style: none;
 }
 
 header li {
-  color: var(--gold);
+  color: var(--color-white);
   font-size: 1.1em;
   display: inline;
 }
 
 header a, header a:visited {
-  color: var(--gold);
+  color: var(--color-white);
+}
+
+header a:hover {
+  color: var(--color-elec-pink);
 }
 
   /* ===== LOG IN ===== */
+
+  .userForms {
+    margin: 0 0 2% 0;
+    text-align: right;
+    background-color: var(--color-white);
+  }
+
+  .userForms input {
+    font-size: 16px;
+    height: 30px;
+    width: 25%;
+  }
+
+  .userForms input[type=submit] {
+    background-color: var(--color-dark-green);
+    border-radius: 5px;
+  }
 
 /* ====== GAME ====== */
 
@@ -81,7 +108,12 @@ header a, header a:visited {
 /* === NAVIGATION === */
 
 nav {
+  width: 95%;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-elec-purple);
+  border-radius: 5px;
   text-align: center;
+  box-shadow: 3px 5px var(--color-grey);
 }
 
 nav ul {
@@ -101,14 +133,61 @@ nav li {
 
 /* ====== MAIN ====== */
 
-  .main-content {
-    margin: 0 auto;
-    width: 95%;
+  .container {
+    margin-top: 2%;
   }
 
-  /* ===== PROFILE ==== */
+  .intro-content {
+    color: var(--color-white);
+    text-shadow: 1px 1px var(--color-elec-purple);
+  }
 
-  /* ===== FORUMS ===== */
+  .main-content {
+    margin: 0 auto;
+    padding: 1%;
+    width: 95%;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-elec-purple);
+    border-radius: 5px;
+    box-shadow: 3px 5px var(--color-grey);
+  }
+
+  /* == PROFILE: VIEW = */
+
+  /* == PROFILE: POST = */
+
+  .main-content fieldset {
+    border: 1px solid var(--color-elec-pink);
+    border-radius: 5px;
+    margin: 10px;
+  }
+
+  .main-content legend {
+    font-size: 1.5em;
+    padding: 0 15px;
+  }
+
+  .main-content input[type=text] {
+    width: 98%;
+    height: 20px;
+    font-size: 16px;
+    margin: 5px 0 10px 0;
+  }
+
+  .main-content textarea {
+    resize: none;
+    width: 98%;
+    height: 15vh;
+    overflow-y: auto;
+    font-size: 16px;
+    margin: 5px 0 10px 0;
+  }
+
+  .main-content input[type=submit] {
+    text-align: center;
+  }
+
+  /* == FORUM: VIEW === */
 
   .forum-posts {
     width: 95%;
@@ -132,6 +211,8 @@ nav li {
     margin: 5px 0 0 15px;
   }
 
+  /* == FORUM: POST === */
+
   /* ====== ABOUT ===== */
 
 /* ===== FOOTER ===== */
@@ -139,6 +220,14 @@ nav li {
   footer {
     padding: 1.5%;
     text-align: center;
+  }
+
+  footer a, footer a:visited {
+    color: var(--color-white);
+  }
+
+  footer a:hover {
+    color: var(--color-elec-pink);
   }
 
 
@@ -162,8 +251,7 @@ nav li {
   /* === NAVIGATION === */
 
     nav {
-      width: 30%;
-      min-width: 200px;
+      width: 29%;
     }
 
     nav li {
@@ -172,6 +260,10 @@ nav li {
     }
 
   /* ====== MAIN ====== */
+
+    main {
+      width: 69%;
+    }
 
     .container {
       display: flex;
@@ -184,9 +276,13 @@ nav li {
 
     /* ====== GAME ====== */
 
-    /* ===== PROFILE ==== */
+    /* == PROFILE: VIEW = */
 
-    /* ===== FORUMS ===== */
+    /* == PROFILE: POST = */
+
+    /* == FORUM: VIEW === */
+
+    /* == FORUM: POST === */
 
     /* ====== ABOUT ===== */
 

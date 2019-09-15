@@ -73,9 +73,9 @@
       <div class="container">
         <nav ng-if="ctrl.loggedInUser">
         <!-- <nav> -->
-          <h3>Welcome, {{ ctrl.loggedInUser }}</h3>
+          <h3>Welcome, {{ ctrl.loggedInUser.username }}</h3>
           <div class="profile-image">
-            <img src="./images/placeholder.jpg" alt="placeholder">
+            <img ng-src="{{ctrl.loggedInUser.avatar}}" alt="placeholder">
           </div>
           <div ng-include=" 'partials/navigation.html' ">
             <!-- NAVIGATION.HTML -->

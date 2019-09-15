@@ -1,6 +1,6 @@
 <div class="main-content">
   <h2>Forum post form</h2>
-  <form ng-submit="ctrl.newPost(ctrl.loggedInUserID)">
+  <form ng-submit="ctrl.newPost(ctrl.loggedInUser)">
     <input type="text" placeholder="title of post" ng-model="ctrl.postTitle" />
     <textarea type="text" ng-model="ctrl.postBody"></textarea>
     <input type="submit" value="New Post">

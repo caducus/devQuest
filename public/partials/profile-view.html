@@ -1,3 +1,10 @@
 <div class="main-content">
   <h2>View all users here</h2>
+  <div class="all-users">
+    <div class="single-user" ng-repeat="user in ctrl.users">
+      <img ng-src="{{user.avatar}}" alt="">
+      <h2>{{ user.username }}</h2>
+      <p>{{ user.bio }}</p>
+    </div>
+  </div>
 </div>

@@ -1,3 +1,38 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="main-content">
-  <h2>Update your profile here</h2>
+  <!-- NOTICE FOR VIEWERS WHO ARE NOT LOGGED IN -->
+  <h2 ng-if="!ctrl.loggedInUser">This is where you would update your profile. You know, if you were logged in?</h2>
+  <form ng-if="ctrl.loggedInUser"
+        ng-submit="ctrl.editUser(ctrl.loggedInUser)">
+    <fieldset>
+    <legend>Edit Your Profile</legend>
+      <label for="updatedAvatar">Avatar:</label>
+      <input  type="text"
+              id="updatedAvatar"
+              ng-value="ctrl.loggedInUser.avatar"
+              ng-model="ctrl.updatedAvatar"
+      />
+      <label>Bio:</label>
+      <textarea type="text"
+                id="updatedBio"
+                ng-value="ctrl.loggedInUser.bio"
+                ng-model="ctrl.updatedBio">
+      </textarea>
+    </fieldset>
+    <input type="submit" value="Update Profile">
+  </form>
 </div>

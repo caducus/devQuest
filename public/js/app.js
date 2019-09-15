@@ -17,7 +17,8 @@ app.controller("MainController", ["$http", function($http) {
       url: "/users",
       data: {
         username: this.createdUsername,
-        password: this.createdPassword
+        password: this.createdPassword,
+        avatar: "/images/avatars/placeholder.jpg"
       }
     }).then((response) => {
       console.log(response.data);
@@ -44,6 +45,7 @@ app.controller("MainController", ["$http", function($http) {
       this.username = null;
       this.password = null;
       this.showLogInForm = false;
+      this.includePath = "partials/about.html"
       this.isLoggedIn();
     }, (error) => {
       console.log("There is an issue with logIn();");
@@ -58,6 +60,7 @@ app.controller("MainController", ["$http", function($http) {
       url: "/sessions"
     }).then((response) => {
       console.log(response.data);
+      this.includePath = "partials/introduction.html"
       this.loggedInUser = null;
     }, (error) => {
       console.log("There is an issue with logOut();");
@@ -71,12 +74,44 @@ app.controller("MainController", ["$http", function($http) {
       method: "GET",
       url: "/loggedin"
     }).then((response) => {
-      this.loggedInUser = response.data.username;
-      this.loggedInUserID = response.data;
+      this.loggedInUser = response.data;
       console.log("Logged in and ready to play.");
     }, (error) => {
       console.log("There is an issue with isLoggedIn();");
       console.log(error.data);
+    });
+  };
+
+  // get a list of all users
+  this.getUsers = () => {
+    $http({
+      method: "GET",
+      url: "/users"
+    }).then((response) => {
+      this.users = response.data;
+    }, (error) => {
+      console.log("There is an issue with getUsers();");
+      console.log(error);
+    });
+  };
+
+  // update a users avatar and bio
+  this.editUser = (user) => {
+    $http({
+      method: "PUT",
+      url: "/users/" + user._id,
+      data: {
+        avatar: this.updatedAvatar,
+        bio: this.updatedBio
+      }
+    }).then((response) => {
+      this.loggedInUser.avatar = this.updatedAvatar;
+      this.updatedAvatar = null;
+      this.updatedBio = null;
+      this.getUsers();
+    }, (error) => {
+      console.log("There is an issue with editUser();");
+      console.log(error);
     });
   };
 
@@ -112,7 +147,8 @@ app.controller("MainController", ["$http", function($http) {
       }
     }).then((response) => {
       this.postTitle = null;
-      this.post = null;
+      this.postBody = null;
+      this.includePath = "partials/forum-view.html"
       this.getPosts();
     }, (error) => {
       console.log("There is an issue with newPost();");
@@ -151,6 +187,8 @@ app.controller("MainController", ["$http", function($http) {
     });
   };
 
+  // call getUsers once on initial page load
+  this.getUsers();
   // call getPosts once on initial page load
   this.getPosts();
 

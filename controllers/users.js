@@ -9,6 +9,16 @@ const router = express.Router();
 const User = require("../models/users.js");
 
 // =======================
+// Index Route
+// =======================
+
+router.get("/", (req, res) => {
+  User.find({}, (error, allUsers) => {
+    res.json(allUsers)
+  });
+});
+
+// =======================
 // Post Route
 // =======================
 
@@ -19,6 +29,16 @@ router.post("/", (req, res) => {
       status: 201,
       message: "user created"
     });
+  });
+});
+
+// =======================
+// Update Route
+// =======================
+
+router.put("/:id", (req, res) => {
+  User.findByIdAndUpdate(req.params.id, req.body, {new: true}, (error, updatedUser) => {
+    res.json(updatedUser)
   });
 });
 

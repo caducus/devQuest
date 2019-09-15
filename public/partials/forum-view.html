@@ -16,7 +16,7 @@
       </div>
       <div>
         <div>
-          <ul ng-if="ctrl.loggedInUserID._id === post.user_id">
+          <ul ng-if="ctrl.loggedInUser._id === post.user_id">
             <li ng-click="ctrl.indexOfEditForm = !ctrl.indexOfEditForm">Edit</li>
             <li ng-click="ctrl.deletePost(post)">Delete</li>
           </ul>
