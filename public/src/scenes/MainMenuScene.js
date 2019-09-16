@@ -11,17 +11,16 @@ class MainMenuScene extends Phaser.Scene {
 
   create () {
     // main menu: background
-    let title_bg = this.add.image(0, 0, "title_background");
+    let title_bg = this.add.image(0, 0, "main_background");
     title_bg.setOrigin(0, 0);
+    title_bg.scaleX = 0.6;
+    title_bg.scaleY = 0.6;
 
     // main menu: logo
     this.add.image(this.game.renderer.width / 2, this.game.renderer.height * 0.20, "logo");
 
     // main menu: play button
     let playButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, "play_button");
-
-    // main menu: options button
-    let optionsButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 + 100, "options_button");
 
     // create a hover sprite
     let hoverSprite = this.add.sprite(100, 100, "bat");
@@ -39,13 +38,12 @@ class MainMenuScene extends Phaser.Scene {
 
     // set buttons to interactive
     playButton.setInteractive();
-    optionsButton.setInteractive();
 
     // play button: hover over
     playButton.on("pointerover", () => {
       hoverSprite.setVisible(true);
       hoverSprite.play("fly");
-      hoverSprite.x = playButton.x - 100;
+      hoverSprite.x = playButton.x - 120;
       hoverSprite.y = playButton.y;
     });
 
@@ -57,25 +55,7 @@ class MainMenuScene extends Phaser.Scene {
     // play button: click to start game
     playButton.on("pointerup", () => {
       console.log("Start game");
-      this.scene.start("WORLD");
-    });
-
-    // option button: hover over
-    optionsButton.on("pointerover", () => {
-      hoverSprite.setVisible(true);
-      hoverSprite.play("fly");
-      hoverSprite.x = optionsButton.x - 100;
-      hoverSprite.y = optionsButton.y;
-    });
-
-    // option button: leave hover
-    optionsButton.on("pointerout", () => {
-        hoverSprite.setVisible(false);
-    });
-
-    // option button: click to get menu
-    optionsButton.on("pointerup", () => {
-      console.log("Open options menu");
+      this.scene.start("LEVEL01");
     });
   }
 }

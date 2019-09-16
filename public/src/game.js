@@ -6,21 +6,21 @@ let config = {
     width: 500,
     height: 400
   },
-  zoom: 2,
   pixelArt: true,
   physics: {
     default: "arcade",
     arcade: {
       gravity: {
-        y: 0
-      }
+        y: 100
+      },
+      debug: false
     }
   },
   scene: [
     LoadingScene,
     MainMenuScene,
-    WorldScene
-  ],
+    FirstLevel
+  ]
 };
 
 let game = new Phaser.Game(config);

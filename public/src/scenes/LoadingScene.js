@@ -7,19 +7,18 @@ class LoadingScene extends Phaser.Scene {
 
   preload() {
     // images: main menu
-    this.load.image("title_background", "../assets/image/title_background.jpg");
-    this.load.image("options_button", "../assets/image/options_button.png");
+    this.load.image("main_background", "../assets/image/main_background.png");
     this.load.image("play_button", "../assets/image/play_button.png");
     this.load.image("logo", "../assets/image/logo.png");
 
     // images: world map
-    this.load.image("tiles", "../assets/map/spritesheet.png");
-    this.load.tilemapTiledJSON("map", "../assets/map/map.json");
+    this.load.image("tiles", "../assets/map/devQuest-tileset.png");
+    this.load.tilemapTiledJSON("level1", "../assets/map/level-01.json");
 
     // images: character
-    this.load.spritesheet("player", "../assets/sprite/57x57-hero-walk.png", {
-      frameHeight: 63,
-      frameWidth: 57
+    this.load.spritesheet("player", "../assets/sprite/19x25-little-blue-run.png", {
+      frameHeight: 25,
+      frameWidth: 19
     });
 
     // images: enemies
@@ -38,11 +37,10 @@ class LoadingScene extends Phaser.Scene {
     // fill in loading bar based on percent of loading progress
     this.load.on("progress", (percent) => {
       loadingBar.fillRect(0, this.game.renderer.height / 2, this.game.renderer.width * percent, 50);
-      console.log(percent);
     });
 
     this.load.on("complete", () => {
-      console.log("I am completely loaded.");
+      console.log("All assets loaded.");
     });
   }
 
