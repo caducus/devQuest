@@ -6,13 +6,18 @@ class FirstLevel extends Phaser.Scene {
   }
 
   create() {
+    // variable that holds the score of stars collected
+    let totalStars = 0;
+
     // json level map
     const map = this.make.tilemap({key: "level1"});
-    // tileset to create the level
+    // tilesets to create the level
     const tiles = map.addTilesetImage("devQuest-tileset", "tiles");
+    const stars = map.addTilesetImage("star", "stars")
     // ground layer of the world
-    const obstacles = map.createDynamicLayer("obstacles", tiles, 0, 0);
+    const obstacles = map.createDynamicLayer("world", tiles, 0, 0);
     // level of stars to collect
+    const starLayer = map.createDynamicLayer("stars", stars, 0, 0);
 
     // player will be able to collide with world
     obstacles.setCollisionByExclusion([-1]);
@@ -28,6 +33,11 @@ class FirstLevel extends Phaser.Scene {
     this.player.setCollideWorldBounds(true);
     this.physics.add.collider(this.player, obstacles);
 
+    // when the player touches a star, call collectStar
+    // starLayer.setTileIndexCallback(21, collectStar, this);
+    // this.physics.add.overlap(this.player, starLayer);
+
+    // defining keyboard functions
     this.cursors = this.input.keyboard.createCursorKeys();
 
     // camera to follow player
@@ -68,8 +78,14 @@ class FirstLevel extends Phaser.Scene {
       }
       // player jumps
       if (this.cursors.up.isDown && this.player.body.onFloor()) {
-        this.player.setVelocityY(-100);
+        this.player.setVelocityY(-170);
       }
   }
+
+  // function called when a player touches a star
+  // collectStar(sprite, tile) {
+  //   starLayer.removeTileAt(tile.x, tile.y);
+  //   return false;
+  // }
 
 }
