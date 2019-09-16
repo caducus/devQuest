@@ -1,4 +1,4 @@
-let config = {
+  let config = {
   type: Phaser.AUTO,
   scale: {
     parent: "game-content",
