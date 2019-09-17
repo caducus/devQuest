@@ -125,6 +125,11 @@ header a:hover {
   height: 400;
 }
 
+/* second possibility for game dimensions
+canvas {
+  width: 100%;
+} */
+
 /* === NAVIGATION === */
 
 nav {

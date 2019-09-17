@@ -13,7 +13,7 @@ class LoadScene extends Phaser.Scene {
 
     // images: world map
     this.load.image("tiles", "../assets/map/devQuest-tileset.png");
-    this.load.image("stars", "../assets/map/star.png")
+    this.load.image("stars", "../assets/map/star.png");
     this.load.tilemapTiledJSON("level1", "../assets/map/level-01.json");
 
     // images: character

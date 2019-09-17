@@ -32,7 +32,7 @@ class MenuScene extends Phaser.Scene {
       frameRate: 4,
       repeat: -1, // repeat forever
       frames: this.anims.generateFrameNumbers("bat", {
-        frames: [1, 2, 3]
+        frames: [1, 2, 3, 2]
       })
     })
 
