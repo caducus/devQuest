@@ -1,7 +1,7 @@
-class LoadingScene extends Phaser.Scene {
+class LoadScene extends Phaser.Scene {
   constructor () {
     super ({
-      key: "LOAD"
+      key: "LoadScene"
     })
   }
 
@@ -17,9 +17,19 @@ class LoadingScene extends Phaser.Scene {
     this.load.tilemapTiledJSON("level1", "../assets/map/level-01.json");
 
     // images: character
-    this.load.spritesheet("player", "../assets/sprite/19x25-little-blue-run.png", {
+    this.load.spritesheet("player-run", "../assets/sprite/19x25-little-blue-run.png", {
       frameHeight: 25,
       frameWidth: 19
+    });
+
+    this.load.spritesheet("player-idle", "../assets/sprite/20x27-little-blue-idle.png", {
+      frameHeight: 27,
+      frameWidth: 20
+    });
+
+    this.load.spritesheet("player-death", "../assets/sprite/35x30-little-blue-death.png", {
+      frameHeight: 30,
+      frameWidth: 35
     });
 
     // images: enemies
@@ -46,6 +56,8 @@ class LoadingScene extends Phaser.Scene {
   }
 
   create () {
-    this.scene.start("MENU", "I am data from the Load Scene, hear me roar.");
+    this.scene.start("MenuScene", "I am data from the Load Scene, hear me roar.");
   }
 }
+
+export default LoadScene;
