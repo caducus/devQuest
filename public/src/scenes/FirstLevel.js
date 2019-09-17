@@ -32,7 +32,7 @@ class FirstLevel extends Phaser.Scene {
     this.player = this.physics.add.sprite(50, 300, "player-idle", 0);
 
     // set the player to bounce slightly after each jump
-    this.player.setBounce(0.3);
+    // this.player.setBounce(0.3);
 
     // player will not be able to go out of bounds
     this.player.setCollideWorldBounds(true);
@@ -121,7 +121,7 @@ class FirstLevel extends Phaser.Scene {
       this.player.anims.play("idle", true);
     }
     // player jumps
-    if (this.cursors.up.isDown && this.player.body.onFloor()) {
+    if ((this.cursors.up.isDown || this.cursors.space.isDown) && this.player.body.onFloor()) {
       this.player.setVelocityY(-170);
     }
   }
