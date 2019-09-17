@@ -1,7 +1,7 @@
-class MainMenuScene extends Phaser.Scene {
+class MenuScene extends Phaser.Scene {
   constructor () {
     super ({
-      key: "MENU"
+      key: "MenuScene"
     })
   }
   init(data) {
@@ -55,7 +55,9 @@ class MainMenuScene extends Phaser.Scene {
     // play button: click to start game
     playButton.on("pointerup", () => {
       console.log("Start game");
-      this.scene.start("LEVEL01");
+      this.scene.start("Level01");
     });
   }
 }
+
+export default MenuScene;

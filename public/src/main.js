@@ -1,3 +1,7 @@
+import LoadScene from "./scenes/LoadScene.js";
+import MenuScene from "./scenes/MenuScene.js";
+import FirstLevel from "./scenes/FirstLevel.js";
+
 let config = {
   type: Phaser.AUTO,
   scale: {
@@ -17,8 +21,8 @@ let config = {
     }
   },
   scene: [
-    LoadingScene,
-    MainMenuScene,
+    LoadScene,
+    MenuScene,
     FirstLevel
   ]
 };
