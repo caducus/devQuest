@@ -51,20 +51,33 @@ class LoadScene extends Phaser.Scene {
     this.load.audio("star", ["../assets/audio/star.mp3"]);
     this.load.audio("death", ["../assets/audio/hurt.mp3"]);
 
-    // create loading bar graphic
-    let loadingBar = this.add.graphics({
-      fillStyle: {
-        color: 0xffffff //white
-      }
+    // create loading bar and box graphics
+    let loadingBar = this.add.graphics();
+    let loadingBox = this.add.graphics();
+
+    // set the attributes of the loadingBox
+    loadingBox.fillStyle(0xffffff, 0.8);
+    loadingBox.fillRect(90, 150, 320, 50);
+
+    // create loadingText
+    let loadingText = this.add.text(100, 100, "Game Loading...", {
+      fontSize: "18px",
+      fill: "#FFFFFF",
     });
 
     // fill in loading bar based on percent of loading progress
     this.load.on("progress", (percent) => {
-      loadingBar.fillRect(0, this.game.renderer.height / 2, this.game.renderer.width * percent, 50);
+      loadingBar.clear();
+      // set the attributes of the loadingBar based on the percentage of the game assets as they load
+      loadingBar.fillStyle(0x89D1E8, 1);
+      loadingBar.fillRect(110, 160, 280 * percent, 30);
     });
 
     this.load.on("complete", () => {
-      console.log("Assets loaded.");
+      // get rid of the loading bar and text when all assets have successfully been loaded
+      loadingBar.destroy();
+      loadingBox.destroy();
+      loadingText.destroy();
     });
   };
   // PRELOAD ENDS HERE
