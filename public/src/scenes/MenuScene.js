@@ -14,6 +14,11 @@ class MenuScene extends Phaser.Scene {
 
   // CREATE STARTS HERE
   create () {
+
+    // =======================
+    // MAIN MENU
+    // =======================
+
     // main menu: background
     let title_bg = this.add.image(0, 0, "main_background");
     title_bg.setOrigin(0, 0);
@@ -64,6 +69,10 @@ class MenuScene extends Phaser.Scene {
       }
     });
 
+    // =======================
+    // HOVER SPRITE
+    // =======================
+
     // create a hover sprite
     let hoverSprite = this.add.sprite(100, 100, "bat");
     hoverSprite.setVisible(false);
@@ -77,6 +86,10 @@ class MenuScene extends Phaser.Scene {
         frames: [1, 2, 3, 2]
       })
     })
+
+    // =======================
+    // BUTTONS
+    // =======================
 
     // set buttons to interactive
     playButton.setInteractive();
@@ -96,17 +109,20 @@ class MenuScene extends Phaser.Scene {
 
     // play button: click to start game
     playButton.on("pointerup", () => {
-      console.log("Start game");
+      this.scene.start("Level01");
+    });
+
+    // =======================
+    // USER INPUT
+    // =======================
+
+    // defining keyboard functions
+    let enterKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
+    enterKey.on("down", () => {
       this.scene.start("Level01");
     });
   };
   // CREATE ENDS HERE
-
-  // UPDATE STARTS HERE
-  update () {
-    
-  }
-  // UPDATE ENDS HERE
 }
 
 export default MenuScene;
