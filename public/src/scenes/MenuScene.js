@@ -26,6 +26,44 @@ class MenuScene extends Phaser.Scene {
     // main menu: play button
     let playButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, "play_button");
 
+    // main menu: game instructions
+    this.add.text(80, 300, "right and left arrows control direction", {
+      fontSize: "14px",
+      fill: "#FFFFFF",
+      shadow: {
+        offsetX: 1,
+        offsetY: 1,
+        color: "#000000",
+        blur: 0,
+        stroke: false,
+        fill: true
+      }
+    });
+    this.add.text(97, 320, "jump with the up arrow or space bar", {
+      fontSize: "14px",
+      fill: "#FFFFFF",
+      shadow: {
+        offsetX: 1,
+        offsetY: 1,
+        color: "#000000",
+        blur: 0,
+        stroke: false,
+        fill: true
+      }
+    });
+    this.add.text(55, 340, "to start a new game, click above or hit enter", {
+      fontSize: "14px",
+      fill: "#FFFFFF",
+      shadow: {
+        offsetX: 1,
+        offsetY: 1,
+        color: "#000000",
+        blur: 0,
+        stroke: false,
+        fill: true
+      }
+    });
+
     // create a hover sprite
     let hoverSprite = this.add.sprite(100, 100, "bat");
     hoverSprite.setVisible(false);
@@ -63,6 +101,12 @@ class MenuScene extends Phaser.Scene {
     });
   };
   // CREATE ENDS HERE
+
+  // UPDATE STARTS HERE
+  update () {
+    
+  }
+  // UPDATE ENDS HERE
 }
 
 export default MenuScene;

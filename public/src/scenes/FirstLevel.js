@@ -3,12 +3,11 @@ class FirstLevel extends Phaser.Scene {
     super({
       key: "Level01"
     });
-  // class variables
   this.player;
   this.bats;
   this.pitfalls;
   this.music;
-  this.direction = ["right", "right", "right", "right", "right", "right"];
+  this.finalStar;
   this.gameOver = false;
   this.score = 0;
   this.scoreText;
@@ -101,6 +100,16 @@ class FirstLevel extends Phaser.Scene {
       })
     });
 
+    // final star animation
+    this.anims.create({
+      key: "spin",
+      frameRate: 6,
+      repeat: -1,
+      frames: this.anims.generateFrameNumbers("final-star", {
+        frames: [0, 1, 2, 3, 4, 5]
+      })
+    });
+
     // =======================
     // PLAYER
     // =======================
@@ -136,12 +145,31 @@ class FirstLevel extends Phaser.Scene {
     // fix the text to a static postion on the screen
     this.scoreText.setScrollFactor(0);
 
+    // create the "Game Over!" text
+    let deathText = this.add.text(170, 100, "Game Over!", {
+      fontSize: "30px",
+      fill: "#000000",
+      shadow: {
+        offsetX: 2,
+        offsetY: 2,
+        color: "#FFFFFF",
+        blur: 0,
+        stroke: false,
+        fill: true
+      }
+    });
+
+    // fix the text to a static position on the screen
+    deathText.setScrollFactor(0);
+    // make the text invisible (until the player dies)
+    deathText.visible = false;
+
     // =======================
     // STARS
     // =======================
 
     // when a player touches a star
-    function collectStar(sprite, tile) {
+    function collectStar(player, tile) {
       // play the star audio sound
       let starSound = this.sound.add("star");
       starSound.play();
@@ -154,9 +182,41 @@ class FirstLevel extends Phaser.Scene {
       return false;
     };
 
+    // when the player touches the final star
+    function collectFinalStar(player, star) {
+      // add 5 stars to the total score
+      this.score += 5;
+      // update the star count / score on the screen
+      this.scoreText.setText("Stars:" + this.score);
+      // pick up the final star
+      finalStar.destroy();
+      // pause all physics within the game, ie. gravity
+      this.physics.pause();
+      // display win text
+      let winText = this.add.text(2820, 150, "Level Complete!", {
+        fontSize: "30px",
+        fill: "#000000",
+        shadow: {
+          offsetX: 2,
+          offsetY: 2,
+          color: "#FFFFFF",
+          blur: 0,
+          stroke: false,
+          fill: true
+        }
+      });
+    };
+
     // when the player touches a star, call collectStar
     starLayer.setTileIndexCallback(21, collectStar, this);
     this.physics.add.overlap(this.player, starLayer);
+
+    // create the final star sprite that will let the player complete the level
+    let finalStar = this.physics.add.sprite(3154, 259, "final-star", 0);
+    finalStar.body.allowGravity = false;
+    finalStar.anims.play("spin", true);
+    this.physics.add.overlap(this.player, finalStar, collectFinalStar, null, this);
+
 
     // =======================
     // USER INPUT
@@ -171,6 +231,8 @@ class FirstLevel extends Phaser.Scene {
 
     // function called when a player falls into a pit
     function collidePit(player, bat) {
+      // make the deathText visible
+      deathText.visible = true;
       // start player death animation
       player.anims.play("death", true);
       // stop music
@@ -210,6 +272,8 @@ class FirstLevel extends Phaser.Scene {
 
     // function called when a player collides with a bat sprite
     function collideBat(player, bat) {
+      // make the deathText visible
+      deathText.visible = true;
       // start player death animation
       player.anims.play("death", true);
       // stop music

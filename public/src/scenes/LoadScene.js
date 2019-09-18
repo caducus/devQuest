@@ -34,8 +34,13 @@ class LoadScene extends Phaser.Scene {
       frameHeight: 32,
       frameWidth: 32
     });
+    // image: star
+    this.load.spritesheet("final-star", "../assets/sprite/13x13-star.png", {
+      frameHeight: 13,
+      frameWidth: 13
+    });
     // images: placeholder
-    this.load.spritesheet("one-star", "../assets/sprite/16x16-star.png", {
+    this.load.spritesheet("one-star", "../assets/sprite/placeholder.png", {
       frameHeight: 3,
       frameWidth: 96
     });
