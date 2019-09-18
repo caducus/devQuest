@@ -4,11 +4,15 @@ class MenuScene extends Phaser.Scene {
       key: "MenuScene"
     })
   }
+
+  // INIT STARTS HERE
   init(data) {
     console.log("I recieved the following data from the load scene:");
     console.log(data);
   }
+  // INIT ENDS HERE
 
+  // CREATE STARTS HERE
   create () {
     // main menu: background
     let title_bg = this.add.image(0, 0, "main_background");
@@ -57,7 +61,8 @@ class MenuScene extends Phaser.Scene {
       console.log("Start game");
       this.scene.start("Level01");
     });
-  }
+  };
+  // CREATE ENDS HERE
 }
 
 export default MenuScene;

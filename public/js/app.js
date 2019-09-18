@@ -19,7 +19,7 @@ app.controller("MainController", ["$http", function($http) {
       data: {
         username: this.createdUsername,
         password: this.createdPassword,
-        avatar: "/images/avatars/placeholder.jpg"
+        avatar: "/images/avatars/placeholder.png"
       }
     }).then((response) => {
       console.log(response.data);

@@ -3,8 +3,10 @@ class LoadScene extends Phaser.Scene {
     super ({
       key: "LoadScene"
     })
+    this.loadingText;
   }
 
+  // PRELOAD STARTS HERE
   preload() {
     // images: main menu
     this.load.image("main_background", "../assets/image/main_background.png");
@@ -57,13 +59,16 @@ class LoadScene extends Phaser.Scene {
     });
 
     this.load.on("complete", () => {
-      console.log("All assets loaded.");
+      console.log("Assets loaded.");
     });
-  }
+  };
+  // PRELOAD ENDS HERE
 
+  // CREATE STARTS HERE
   create () {
-    this.scene.start("MenuScene", "I am data from the Load Scene, hear me roar.");
-  }
+      this.scene.start("MenuScene", "I am data from the Load Scene, hear me roar.");
+  };
+  // CREATE ENDS HERE
 }
 
 export default LoadScene;
