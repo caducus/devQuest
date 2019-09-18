@@ -6,6 +6,8 @@ class FirstLevel extends Phaser.Scene {
   // class variables
   this.player;
   this.bats;
+  this.pitfalls;
+  this.music;
   this.direction = ["right", "right", "right", "right", "right", "right"];
   this.gameOver = false;
   this.score = 0;
@@ -39,6 +41,11 @@ class FirstLevel extends Phaser.Scene {
     // boundaries of the game are the total width and height of the json map
     this.physics.world.bounds.width = obstacles.widthInPixels;
     this.physics.world.bounds.height = obstacles.heightInPixels;
+
+    // MUSIC
+    this.music = this.sound.add("music")
+    this.music.loop = true;
+    this.music.play();
 
     // =======================
     // ANIMATIONS
@@ -135,6 +142,9 @@ class FirstLevel extends Phaser.Scene {
 
     // when a player touches a star
     function collectStar(sprite, tile) {
+      // play the star audio sound
+      let starSound = this.sound.add("star");
+      starSound.play();
       // removes the star from the map
       starLayer.removeTileAt(tile.x, tile.y);
       // add one star to the star count / score
@@ -156,18 +166,63 @@ class FirstLevel extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
 
     // =======================
-    // ENEMIES
+    // PITFALLS
     // =======================
 
-    // // function called when a player collides with a bat sprite
-    // function collideBat(player, bat) {
-    //   // stop the players movement
-    //   this.player.setVelocity(0, 0);
-    //   // pause all physics within the game, ie. gravity
-    //   this.physics.pause();
-    //   this.player.anims.play("death");
-    //   this.gameOver = true;
-    // }
+    // function called when a player falls into a pit
+    function collidePit(player, bat) {
+      // start player death animation
+      player.anims.play("death", true);
+      // stop music
+      this.music.stop();
+      // play death sound
+      let deathSound = this.sound.add("death");
+      // stop the players movement
+      player.setVelocity(0, 0);
+      // pause all physics within the game, ie. gravity
+      this.physics.pause();
+      // set gameOver to true;
+      this.gameOver = true;
+    };
+
+    // select the pitfall objects from the pits layer
+    const pitObjects = map.getObjectLayer("pits")["objects"];
+
+    // create a group of all pitfalls
+    this.pitfalls = this.physics.add.group({
+      allowGravity: false,
+      immovable: true
+    });
+
+    pitObjects.forEach(pitObject => {
+      // use an arbitrary image for pitfall
+      this.pitfall = this.physics.add.sprite(pitObject.x, pitObject.y, "one-star");
+      this.pitfall.visible = false;
+      this.pitfalls.add(this.pitfall);
+    });
+
+    // allow pitfalls to collide with player only
+    this.physics.add.collider(this.player, this.pitfalls, collidePit, null, this);
+
+    // =======================
+    // ENEMIES (BATS)
+    // =======================
+
+    // function called when a player collides with a bat sprite
+    function collideBat(player, bat) {
+      // start player death animation
+      player.anims.play("death", true);
+      // stop music
+      this.music.stop();
+      // play death sound
+      let deathSound = this.sound.add("death");
+      // stop the players movement
+      player.setVelocity(0, 0);
+      // pause all physics within the game, ie. gravity
+      this.physics.pause();
+      // set gameOver to true;
+      this.gameOver = true;
+    };
 
     // select the bat objects from the bat layer
     const batObjects = map.getObjectLayer("bats")["objects"];
@@ -188,13 +243,18 @@ class FirstLevel extends Phaser.Scene {
 
     // allow bats to collide with level and player
     this.physics.add.collider(this.bats, obstacles);
-    // this.physics.add.collider(this.player, this.bats, collideBat, null, this);
+    this.physics.add.collider(this.player, this.bats, collideBat, null, this);
 
   }
   // CREATE ENDS HERE
 
   // UPDATE STARTS HERE
   update (time, delta) {
+
+    // =======================
+    // PLAYER ACTIONS
+    // =======================
+
     // when left arrow is down, player moves left
     if (this.cursors.left.isDown) {
       this.player.body.setVelocityX(-100);
@@ -212,13 +272,20 @@ class FirstLevel extends Phaser.Scene {
     };
     // player jumps
     if ((this.cursors.up.isDown || this.cursors.space.isDown) && this.player.body.onFloor()) {
+      let jumpSound = this.sound.add("jump");
+      jumpSound.play();
       this.player.setVelocityY(-170);
     };
 
+    // =======================
+    // BAT ACTIONS
+    // =======================
+
+    // select the group of bats
     let enemies = this.bats.getChildren();
 
+    // loop through the bats
     for (let i = 0; i < enemies.length; i++) {
-
       // starts initial movement
       if (enemies[i].hasStartedMoving === false) {
         // change to true so that this will never be accessed again
@@ -228,7 +295,7 @@ class FirstLevel extends Phaser.Scene {
         // set initial animation
         enemies[i].anims.play("fly-right", true);
       };
-
+      // if the bat is moving right and is blocked
       if (enemies[i].body.blocked.right === true) {
         if (enemies[i].setDirection === "right") {
           // change setDirection
@@ -238,6 +305,7 @@ class FirstLevel extends Phaser.Scene {
           // change setVelocityX
           enemies[i].setVelocityX(-100);
         };
+      // if the bat is moving left and is blocked
       } else if (enemies[i].body.blocked.left == true) {
         if (enemies[i].setDirection === "left") {
           // change setDirection
@@ -250,9 +318,24 @@ class FirstLevel extends Phaser.Scene {
       };
     };
 
-  }
-  // UPDATE ENDS HERE
+    // =======================
+    // GAME OVER
+    // =======================
 
+    if (this.gameOver === true) {
+      // camera shakes
+      this.cameras.main.shake(400);
+      // redirect to new game
+      this.time.delayedCall(400, function () {
+        this.score = 0;
+        this.gameOver = false;
+        this.direction = ["right", "right", "right", "right", "right", "right"];
+        this.scene.start("MenuScene");
+      }, [], this);
+    };
+
+  };
+  // UPDATE ENDS HERE
 }
 
 export default FirstLevel;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="200" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="10">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="200" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="72">
  <tileset firstgid="1" name="devQuest-tileset" tilewidth="16" tileheight="16" tilecount="20" columns="5">
   <image source="devQuest-tileset.png" width="80" height="64"/>
  </tileset>
@@ -79,33 +79,18 @@
    <property name="direction" value="right"/>
   </properties>
   <object id="2" name="bat" x="777" y="271" width="29" height="29">
-   <properties>
-    <property name="direction" value="right"/>
-   </properties>
    <ellipse/>
   </object>
   <object id="3" name="bat" x="1044.5" y="22.5" width="29" height="29">
-   <properties>
-    <property name="direction" value="right"/>
-   </properties>
    <ellipse/>
   </object>
   <object id="4" name="bat" x="1679.5" y="100.5" width="29" height="29">
-   <properties>
-    <property name="direction" value="right"/>
-   </properties>
    <ellipse/>
   </object>
   <object id="5" name="bat" x="2331.5" y="245.5" width="29" height="29">
-   <properties>
-    <property name="direction" value="right"/>
-   </properties>
    <ellipse/>
   </object>
   <object id="6" name="bat" x="2789.5" y="115.5" width="29" height="29">
-   <properties>
-    <property name="direction" value="right"/>
-   </properties>
    <ellipse/>
   </object>
   <object id="7" name="bat" x="219.5" y="81.5" width="29" height="29">
@@ -114,5 +99,27 @@
    </properties>
    <ellipse/>
   </object>
+ </objectgroup>
+ <objectgroup id="6" name="pits">
+  <object id="39" name="pitfall" x="671.667" y="392" width="93" height="7"/>
+  <object id="53" name="pitfall" x="740.833" y="392.167" width="93" height="7"/>
+  <object id="54" name="pitfall" x="339.167" y="392.833" width="93" height="7"/>
+  <object id="55" name="pitfall" x="134.333" y="393.333" width="93" height="7"/>
+  <object id="56" name="pitfall" x="234.667" y="393.167" width="93" height="7"/>
+  <object id="57" name="pitfall" x="814.167" y="391.833" width="93" height="7"/>
+  <object id="58" name="pitfall" x="883.167" y="392.5" width="93" height="7"/>
+  <object id="59" name="pitfall" x="952.667" y="392.5" width="93" height="7"/>
+  <object id="60" name="pitfall" x="1029" y="392.833" width="93" height="7"/>
+  <object id="61" name="pitfall" x="1464" y="392.75" width="93" height="7"/>
+  <object id="62" name="pitfall" x="1532.5" y="392.75" width="93" height="7"/>
+  <object id="63" name="pitfall" x="1785.75" y="392" width="93" height="7"/>
+  <object id="64" name="pitfall" x="1875.5" y="392.75" width="93" height="7"/>
+  <object id="65" name="pitfall" x="2255.5" y="392.25" width="93" height="7"/>
+  <object id="66" name="pitfall" x="2348.5" y="391.75" width="93" height="7"/>
+  <object id="67" name="pitfall" x="2646" y="392.25" width="93" height="7"/>
+  <object id="68" name="pitfall" x="2806" y="391.5" width="93" height="7"/>
+  <object id="69" name="pitfall" x="3020.75" y="391.25" width="93" height="7"/>
+  <object id="70" name="pitfall" x="1113.5" y="392.5" width="93" height="7"/>
+  <object id="71" name="pitfall" x="1158" y="392.5" width="93" height="7"/>
  </objectgroup>
 </map>

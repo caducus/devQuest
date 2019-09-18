@@ -35,12 +35,6 @@
                  "height":29,
                  "id":2,
                  "name":"bat",
-                 "properties":[
-                        {
-                         "name":"direction",
-                         "type":"string",
-                         "value":"right"
-                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -53,12 +47,6 @@
                  "height":29,
                  "id":3,
                  "name":"bat",
-                 "properties":[
-                        {
-                         "name":"direction",
-                         "type":"string",
-                         "value":"right"
-                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -71,12 +59,6 @@
                  "height":29,
                  "id":4,
                  "name":"bat",
-                 "properties":[
-                        {
-                         "name":"direction",
-                         "type":"string",
-                         "value":"right"
-                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -89,12 +71,6 @@
                  "height":29,
                  "id":5,
                  "name":"bat",
-                 "properties":[
-                        {
-                         "name":"direction",
-                         "type":"string",
-                         "value":"right"
-                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -107,12 +83,6 @@
                  "height":29,
                  "id":6,
                  "name":"bat",
-                 "properties":[
-                        {
-                         "name":"direction",
-                         "type":"string",
-                         "value":"right"
-                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -149,9 +119,240 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":6,
+         "name":"pits",
+         "objects":[
+                {
+                 "height":6.99999666666668,
+                 "id":39,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93.0000333333334,
+                 "x":671.66665,
+                 "y":392.000001666667
+                }, 
+                {
+                 "height":7,
+                 "id":53,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":740.833333333333,
+                 "y":392.166666666667
+                }, 
+                {
+                 "height":7,
+                 "id":54,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":339.166666666667,
+                 "y":392.833333333333
+                }, 
+                {
+                 "height":7,
+                 "id":55,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":134.333333333333,
+                 "y":393.333333333333
+                }, 
+                {
+                 "height":7,
+                 "id":56,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":234.666666666667,
+                 "y":393.166666666667
+                }, 
+                {
+                 "height":7,
+                 "id":57,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":814.166666666667,
+                 "y":391.833333333333
+                }, 
+                {
+                 "height":7,
+                 "id":58,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":883.166666666667,
+                 "y":392.5
+                }, 
+                {
+                 "height":7,
+                 "id":59,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":952.666666666667,
+                 "y":392.5
+                }, 
+                {
+                 "height":7,
+                 "id":60,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":1029,
+                 "y":392.833333333333
+                }, 
+                {
+                 "height":7,
+                 "id":61,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":1464,
+                 "y":392.75
+                }, 
+                {
+                 "height":7,
+                 "id":62,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":1532.5,
+                 "y":392.75
+                }, 
+                {
+                 "height":7,
+                 "id":63,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":1785.75,
+                 "y":392
+                }, 
+                {
+                 "height":7,
+                 "id":64,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":1875.5,
+                 "y":392.75
+                }, 
+                {
+                 "height":7,
+                 "id":65,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":2255.5,
+                 "y":392.25
+                }, 
+                {
+                 "height":7,
+                 "id":66,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":2348.5,
+                 "y":391.75
+                }, 
+                {
+                 "height":7,
+                 "id":67,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":2646,
+                 "y":392.25
+                }, 
+                {
+                 "height":7,
+                 "id":68,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":2806,
+                 "y":391.5
+                }, 
+                {
+                 "height":7,
+                 "id":69,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":3020.75,
+                 "y":391.25
+                }, 
+                {
+                 "height":7,
+                 "id":70,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":1113.5,
+                 "y":392.5
+                }, 
+                {
+                 "height":7,
+                 "id":71,
+                 "name":"pitfall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":93,
+                 "x":1158,
+                 "y":392.5
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":6,
- "nextobjectid":10,
+ "nextlayerid":7,
+ "nextobjectid":72,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
