@@ -107,6 +107,7 @@ app.controller("MainController", ["$http", function($http) {
       }
     }).then((response) => {
       this.loggedInUser.avatar = this.updatedAvatar;
+      this.loggedInUser.bio = this.updatedBio;
       this.updatedAvatar = null;
       this.updatedBio = null;
       this.getUsers();

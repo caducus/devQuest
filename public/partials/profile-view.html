@@ -8,7 +8,9 @@
           <img ng-src="{{user.avatar}}" alt="">
         </div>
         <div>
-          <h2 ng-click="ctrl.indexOfUserBio = $index"><a href="#">{{ user.username }}</a></h2>
+          <h2 ng-click="ctrl.indexOfUserBio = $index"
+              ng-dblclick="ctrl.indexOfUserBio = null"
+          ><a href="#">{{ user.username }}</a></h2>
         </div>
       </div>
       <div ng-if="ctrl.indexOfUserBio === $index">

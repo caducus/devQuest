@@ -67,6 +67,9 @@ Things that I would like to add as I better learn Phaser 3:
 * An API call to update a leaderboard of logged in users.
 * A volume control button.
 * A way to interact with and kill enemies, possibly by stomping on them.
+Other reminders:
+* When a user puts in the wrong name and password, put some sort of notification on the screen.
+* Fix app.js so that functions only make a single API call, and edit the rest of the information locally.
 
 ## References
 Resources for this site and game were taken from the following:
