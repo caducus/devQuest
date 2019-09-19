@@ -15,7 +15,7 @@
 * [References](#references)
 
 ## Introduction
-devQuest consists of two parts: a user-based forum, and a game made with Phaser 3.
+devQuest consists of two parts: a user-based forum, and a game made with Phaser 3. Having never made a browser-based video game before, I wanted to create a simple but addictive little platformer that I could possibly expand at a later date.
 
 ## Link to Live Site
 http://play-devquest.herokuapp.com
