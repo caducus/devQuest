@@ -270,15 +270,14 @@ class SecondLevel extends Phaser.Scene {
     // =======================
 
     // function called when a player falls into a pit
-    function collidePit(player, bat) {
-      // make the deathText visible
-      deathText.visible = true;
-      // start player death animation
-      player.anims.play("death", true);
-      // stop music
-      this.music.stop();
+    function collidePit(player, pit) {
       // play death sound
       let deathSound = this.sound.add("death");
+      deathSound.play();
+      // make the deathText visible
+      deathText.visible = true;
+      // stop music
+      this.music.stop();
       // stop the players movement
       player.setVelocity(0, 0);
       // pause all physics within the game, ie. gravity
@@ -299,7 +298,7 @@ class SecondLevel extends Phaser.Scene {
     pitObjects.forEach(pitObject => {
       // use an arbitrary image for pitfall
       this.pitfall = this.physics.add.sprite(pitObject.x, pitObject.y, "danger");
-      this.pitfall.visible = true;
+      this.pitfall.visible = false;
       this.pitfalls.add(this.pitfall);
     });
 
@@ -312,14 +311,13 @@ class SecondLevel extends Phaser.Scene {
 
     // function called when a player collides with a bat sprite
     function collideBat(player, bat) {
-      // make the deathText visible
-      deathText.visible = true;
-      // start player death animation
-      player.anims.play("death", true);
-      // stop music
-      this.music.stop();
       // play death sound
       let deathSound = this.sound.add("death");
+      deathSound.play();
+      // make the deathText visible
+      deathText.visible = true;
+      // stop music
+      this.music.stop();
       // stop the players movement
       player.setVelocity(0, 0);
       // pause all physics within the game, ie. gravity
@@ -420,18 +418,6 @@ class SecondLevel extends Phaser.Scene {
         };
       };
     };
-
-    // =======================
-    // LEVEL COMPLETE
-    // =======================
-    // 
-    // if (this.levelComplete === true) {
-    //   // redirect to new game
-    //   this.time.delayedCall(500, function () {
-    //     this.levelComplete = false;
-    //     this.scene.start("Level02");
-    //   }, [], this);
-    // }
 
     // =======================
     // GAME OVER

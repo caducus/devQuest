@@ -113,7 +113,7 @@ class FirstLevel extends Phaser.Scene {
 
     // player death animation
     this.anims.create({
-      key: "death",
+      key: "dies",
       frameRate: 8,
       repeat: 1,
       frames: this.anims.generateFrameNumbers("player-death", {
@@ -246,6 +246,8 @@ class FirstLevel extends Phaser.Scene {
           fill: true
         }
       });
+      // stop the music
+      this.music.stop();
       // set levelComplete to true
       this.levelComplete = true;
     };
@@ -273,15 +275,14 @@ class FirstLevel extends Phaser.Scene {
     // =======================
 
     // function called when a player falls into a pit
-    function collidePit(player, bat) {
-      // make the deathText visible
-      deathText.visible = true;
-      // start player death animation
-      player.anims.play("death", true);
-      // stop music
-      this.music.stop();
+    function collidePit(player, pit) {
       // play death sound
       let deathSound = this.sound.add("death");
+      deathSound.play();
+      // make the deathText visible
+      deathText.visible = true;
+      // stop music
+      this.music.stop();
       // stop the players movement
       player.setVelocity(0, 0);
       // pause all physics within the game, ie. gravity
@@ -315,14 +316,13 @@ class FirstLevel extends Phaser.Scene {
 
     // function called when a player collides with a bat sprite
     function collideBat(player, bat) {
-      // make the deathText visible
-      deathText.visible = true;
-      // start player death animation
-      player.anims.play("death", true);
-      // stop music
-      this.music.stop();
       // play death sound
       let deathSound = this.sound.add("death");
+      deathSound.play();
+      // make the deathText visible
+      deathText.visible = true;
+      // stop music
+      this.music.stop();
       // stop the players movement
       player.setVelocity(0, 0);
       // pause all physics within the game, ie. gravity

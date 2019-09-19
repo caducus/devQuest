@@ -59,14 +59,13 @@ http://play-devquest.herokuapp.com
 * Anyone should be able to go to the site and play the game.
 
 ## Project Status
-Currently Complete, though I may return to it later as I learn more about Phaser.
+Currently complete, though I may return to it later as I learn more about Phaser.
 
 ## Phaser 3 Notes
 Features I would like to add as my understanding of Phaser 3 increases:
 * A world map that users can use to navigate levels.
 * Health and/or extra lives.
 * An API call to update a leaderboard of logged in users.
-* A volume control button.
 * A way to interact with and kill enemies, possibly by stomping on them.
 
 ## Other Notes and Reminders
