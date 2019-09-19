@@ -114,20 +114,15 @@ header a:hover {
 
 /* ====== GAME ====== */
 
-.game-devQuest {
+/* .game-devQuest {
   margin: 0 auto;
   text-align: center;
-}
+} */
 
-#game-content {
+/* #game-content {
   margin: 0 auto;
   width: 500;
   height: 400;
-}
-
-/* second possibility for game dimensions
-canvas {
-  width: 100%;
 } */
 
 /* === NAVIGATION === */

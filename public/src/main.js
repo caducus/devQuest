@@ -6,13 +6,12 @@ let config = {
   type: Phaser.AUTO,
   // second possibility for game dimensions
   // parent: "game-content",
-  // width: 500,
-  // height: 400,
+  width: 500,
+  height: 400,
   scale: {
     parent: "game-content",
     mode: Phaser.Scale.FIT,
-    width: 500,
-    height: 400
+    autoCenter: Phaser.Scale.CENTER_BOTH
   },
   pixelArt: true,
   physics: {

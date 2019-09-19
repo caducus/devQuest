@@ -47,6 +47,46 @@ class FirstLevel extends Phaser.Scene {
     this.music.play();
 
     // =======================
+    // AUDIO VOLUME CONTROL
+    // =======================
+
+    // create the audio volume buttons
+    let vol = this.add.image(480, 35, "vol");
+    let vol_up = this.add.image(480, 20, "vol_up");
+    let vol_down = this.add.image(480, 50, "vol_down");
+
+    // fix them to a static postion on the screen
+    vol.setScrollFactor(0);
+    vol_up.setScrollFactor(0);
+    vol_down.setScrollFactor(0);
+
+    // set buttons to interactive
+    vol.setInteractive();
+    vol_up.setInteractive();
+    vol_down.setInteractive();
+
+    // speaker: click to mute
+    vol.on("pointerup", () => {
+      if (!this.game.sound.mute) {
+        this.game.sound.mute = true;
+        vol.tint = 16711680;
+      } else {
+        this.game.sound.mute = false;
+        vol.tint = 16777215;
+      };
+    });
+
+    // volume up: click to increase volume
+    vol_up.on("pointerup", () => {
+      this.game.sound.volume += 0.2;
+    });
+
+    // volume down: click to decrease volume
+    vol_down.on("pointerup", () => {
+      this.game.sound.volume -= 0.2;
+    });
+
+    // =======================
     // ANIMATIONS
     // =======================
 
@@ -137,7 +177,7 @@ class FirstLevel extends Phaser.Scene {
     // =======================
 
     // create the score text which appears at the top right corner of the screen
-    this.scoreText = this.add.text(390, 25, "Stars: 0", {
+    this.scoreText = this.add.text(370, 25, "Stars: 0", {
       fontSize: "16px",
       fill: "#000000"
     });
@@ -258,7 +298,7 @@ class FirstLevel extends Phaser.Scene {
 
     pitObjects.forEach(pitObject => {
       // use an arbitrary image for pitfall
-      this.pitfall = this.physics.add.sprite(pitObject.x, pitObject.y, "one-star");
+      this.pitfall = this.physics.add.sprite(pitObject.x, pitObject.y, "danger");
       this.pitfall.visible = false;
       this.pitfalls.add(this.pitfall);
     });

@@ -26,7 +26,7 @@ class MenuScene extends Phaser.Scene {
     title_bg.scaleY = 0.6;
 
     // main menu: logo
-    this.add.image(this.game.renderer.width / 2, this.game.renderer.height * 0.20, "logo");
+    this.add.image(this.game.renderer.width / 2, this.game.renderer.height * 0.20, "devQuest");
 
     // main menu: play button
     let playButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, "play_button");

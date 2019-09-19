@@ -11,11 +11,16 @@ class LoadScene extends Phaser.Scene {
     // images: main menu
     this.load.image("main_background", "../assets/image/main_background.png");
     this.load.image("play_button", "../assets/image/play_button.png");
-    this.load.image("logo", "../assets/image/logo.png");
+    this.load.image("devQuest", "../assets/image/devQuest-logo.png");
+    this.load.image("logo", "../assets/image/caducus-red-logo.png");
     // images: world map
     this.load.image("tiles", "../assets/map/devQuest-tileset.png");
     this.load.image("stars", "../assets/map/star.png");
     this.load.tilemapTiledJSON("level1", "../assets/map/level-01.json");
+    // images: audio volume
+    this.load.image("vol", "../assets/image/vol.png");
+    this.load.image("vol_up", "../assets/image/vol_up.png");
+    this.load.image("vol_down", "../assets/image/vol_down.png");
     // images: character
     this.load.spritesheet("player-run", "../assets/sprite/19x25-little-blue-run.png", {
       frameHeight: 25,
@@ -39,17 +44,18 @@ class LoadScene extends Phaser.Scene {
       frameHeight: 13,
       frameWidth: 13
     });
-    // images: placeholder
-    this.load.spritesheet("one-star", "../assets/sprite/placeholder.png", {
-      frameHeight: 3,
-      frameWidth: 96
+    // image: danger
+    this.load.spritesheet("danger", "../assets/sprite/100x15-danger.png", {
+      frameHeight: 5,
+      frameWidth: 100
     });
 
     // audio
-    this.load.audio("music", ["../assets/audio/enchanted_forest.mp3"]);
-    this.load.audio("jump", ["../assets/audio/jump.mp3"]);
-    this.load.audio("star", ["../assets/audio/star.mp3"]);
-    this.load.audio("death", ["../assets/audio/hurt.mp3"]);
+    // notes: Firefox doesn't support mp3s, so include oggs as well
+    this.load.audio("music", ["../assets/audio/enchanted_forest.mp3", "../assets/audio/enchanted_forest_loop.ogg"]);
+    this.load.audio("jump", ["../assets/audio/jump.mp3", "../assets/audio/jump.ogg"]);
+    this.load.audio("star", ["../assets/audio/star.mp3", "../assets/audio/star.ogg"]);
+    this.load.audio("death", ["../assets/audio/hurt.mp3", "../assets/audio/hurt.ogg"]);
 
     // create loading bar and box graphics
     let loadingBar = this.add.graphics();
@@ -84,7 +90,16 @@ class LoadScene extends Phaser.Scene {
 
   // CREATE STARTS HERE
   create () {
-      this.scene.start("MenuScene", "I am data from the Load Scene, hear me roar.");
+      // render the trademark logo after all assets have been loaded
+      this.add.image(this.game.renderer.width / 2, (this.game.renderer.height / 2) - 25, "logo");
+      // add a delay to allow the user to see the trademark logo before starting the menu scene
+      this.time.addEvent({
+        delay: 700,
+        callback: ()=>{
+          this.scene.start("MenuScene", "I am data from the Load Scene, hear me roar.");
+        },
+        loop: false
+      });
   };
   // CREATE ENDS HERE
 }
