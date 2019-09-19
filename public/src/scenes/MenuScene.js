@@ -119,7 +119,7 @@ class MenuScene extends Phaser.Scene {
     // defining keyboard functions
     let enterKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
     enterKey.on("down", () => {
-      this.scene.start("Level01");
+      this.scene.start("Level02");
     });
   };
   // CREATE ENDS HERE
