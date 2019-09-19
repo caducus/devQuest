@@ -232,7 +232,7 @@ class SecondLevel extends Phaser.Scene {
       // pause all physics within the game, ie. gravity
       this.physics.pause();
       // display win text
-      let winText = this.add.text(2820, 150, "Level Complete!", {
+      let winText = this.add.text(2820, 150, "Grats, You Win!", {
         fontSize: "30px",
         fill: "#000000",
         shadow: {
