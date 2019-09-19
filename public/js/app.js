@@ -23,8 +23,10 @@ app.controller("MainController", ["$http", function($http) {
       }
     }).then((response) => {
       console.log(response.data);
+      // empty these fields
       this.createdUsername = null;
       this.createdPassword = null;
+      // hide the form
       this.showNewForm = false;
     }, (error) => {
       console.log("There is an issue with createUser();");
@@ -43,9 +45,12 @@ app.controller("MainController", ["$http", function($http) {
       }
     }).then((response) => {
       console.log(response.data);
+      // empty these fields
       this.username = null;
       this.password = null;
+      // hide the form
       this.showLogInForm = false;
+      // change the view to "about"
       this.includePath = "partials/about.html"
       this.isLoggedIn();
     }, (error) => {
@@ -61,8 +66,10 @@ app.controller("MainController", ["$http", function($http) {
       url: "/sessions"
     }).then((response) => {
       console.log(response.data);
-      this.includePath = "partials/introduction.html"
+      // empty the loggedInUser data
       this.loggedInUser = null;
+      // change the view to "introduction"
+      this.includePath = "partials/introduction.html"
     }, (error) => {
       console.log("There is an issue with logOut();");
       console.log(error);
@@ -75,8 +82,9 @@ app.controller("MainController", ["$http", function($http) {
       method: "GET",
       url: "/loggedin"
     }).then((response) => {
-      this.loggedInUser = response.data;
       console.log("Logged in and ready to play.");
+      // set the loggedInUser data to that of the person who is currently logged in
+      this.loggedInUser = response.data;
     }, (error) => {
       console.log("There is an issue with isLoggedIn();");
       console.log(error.data);
@@ -97,20 +105,26 @@ app.controller("MainController", ["$http", function($http) {
   };
 
   // update a users avatar and bio
-  this.editUser = (user) => {
+  this.editUser = (updated_user) => {
     $http({
       method: "PUT",
-      url: "/users/" + user._id,
+      url: "/users/" + updated_user._id,
       data: {
         avatar: this.updatedAvatar,
         bio: this.updatedBio
       }
     }).then((response) => {
+      // update the users information on the page without needing to refresh
       this.loggedInUser.avatar = this.updatedAvatar;
       this.loggedInUser.bio = this.updatedBio;
+      // empty these fields
       this.updatedAvatar = null;
       this.updatedBio = null;
-      this.getUsers();
+      // remove the older user information from the viewable list
+      const removeByIndex = this.users.findIndex(user => user._id === updated_user._id);
+      this.users.splice(removeByIndex, 1);
+      // add the updated user information to the viewable list
+      this.users.push(response.data);
     }, (error) => {
       console.log("There is an issue with editUser();");
       console.log(error);
@@ -148,10 +162,13 @@ app.controller("MainController", ["$http", function($http) {
         post: this.postBody
       }
     }).then((response) => {
+      // empty these fields
       this.postTitle = null;
       this.postBody = null;
+      // change the view to "forum-view"
       this.includePath = "partials/forum-view.html"
-      this.getPosts();
+      // push the new post to the data fetched upon page load
+      this.posts.push(response.data);
     }, (error) => {
       console.log("There is an issue with newPost();");
       console.log(error);
@@ -159,17 +176,21 @@ app.controller("MainController", ["$http", function($http) {
   };
 
   // edit existing forum post
-  this.editPost = (post) => {
+  this.editPost = (edited_post) => {
     $http({
       method: "PUT",
-      url: "/posts/" + post._id,
+      url: "/posts/" + edited_post._id,
       data: {
         title: this.updatedTitle,
         post: this.updatedPost
       }
     }).then((response) => {
+      // remove the original post
       this.indexOfEditForm = !this.indexOfEditForm;
-      this.getPosts();
+      const removeByIndex = this.posts.findIndex(post => post._id === edited_post._id);
+      this.posts.splice(removeByIndex, 1);
+      // push the new post
+      this.posts.push(response.data);
     }, (error) => {
       console.log("There is an issue with editPost();");
       console.log(error);
@@ -177,12 +198,14 @@ app.controller("MainController", ["$http", function($http) {
   };
 
   // delete existing forum post
-  this.deletePost = (post) => {
+  this.deletePost = (deleted_post) => {
     $http({
       method: "DELETE",
-      url: "/posts/" + post._id
+      url: "/posts/" + deleted_post._id
     }).then((response) => {
-      this.getPosts();
+      // remove the deleted post
+      const removeByIndex = this.posts.findIndex(post => post._id === deleted_post._id);
+      this.posts.splice(removeByIndex, 1);
     }, (error) => {
       console.log("There is an issue with deletePost();");
       console.log(error);

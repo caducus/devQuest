@@ -70,7 +70,6 @@ Features I would like to add as my understanding of Phaser 3 increases:
 
 ## Other Notes and Reminders
 * When a user puts in the wrong name and password, put some sort of notification on the screen.
-* Fix app.js so that functions only make a single API call, and edit the rest of the information locally.
 
 ## References
 Resources for this site and game were taken from the following:
