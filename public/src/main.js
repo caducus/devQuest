@@ -1,6 +1,7 @@
 import LoadScene from "./scenes/LoadScene.js";
 import MenuScene from "./scenes/MenuScene.js";
 import FirstLevel from "./scenes/FirstLevel.js";
+import SecondLevel from "./scenes/SecondLevel.js";
 
 let config = {
   type: Phaser.AUTO,
@@ -26,7 +27,8 @@ let config = {
   scene: [
     LoadScene,
     MenuScene,
-    FirstLevel
+    FirstLevel,
+    SecondLevel
   ]
 };
 

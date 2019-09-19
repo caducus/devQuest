@@ -1,7 +1,7 @@
-class FirstLevel extends Phaser.Scene {
+class SecondLevel extends Phaser.Scene {
   constructor() {
     super({
-      key: "Level01"
+      key: "Level02"
     });
   this.player;
   this.bats;
@@ -10,10 +10,16 @@ class FirstLevel extends Phaser.Scene {
   this.levelComplete = false;
   this.finalStar;
   this.gameOver = false;
-  this.score = 0;
+  this.score;
   this.scoreText;
   this.gameOverText;
   }
+
+  // INIT STARTS HERE
+  init(score) {
+    this.score = score;
+  }
+  // INIT ENDS HERE
 
   // CREATE STARTS HERE
   create() {
@@ -23,7 +29,7 @@ class FirstLevel extends Phaser.Scene {
     // =======================
 
     // create and load a level map
-    const map = this.make.tilemap({key: "level1"});
+    const map = this.make.tilemap({key: "level2"});
     // tilesets used to create the layers of the map
     const tiles = map.addTilesetImage("devQuest-tileset", "tiles");
     const stars = map.addTilesetImage("star", "stars");
@@ -31,6 +37,8 @@ class FirstLevel extends Phaser.Scene {
     // SET MAP LAYERS
     // ground layer of the world
     const obstacles = map.createStaticLayer("world", tiles, 0, 0);
+    // secret layer of the world where player can walk through walls
+    const secret = map.createStaticLayer("secret", tiles, 0, 0);
     // star layer which contains all stars to collect
     const starLayer = map.createDynamicLayer("stars", stars, 0, 0);
 
@@ -111,16 +119,6 @@ class FirstLevel extends Phaser.Scene {
       })
     });
 
-    // player death animation
-    this.anims.create({
-      key: "death",
-      frameRate: 8,
-      repeat: 1,
-      frames: this.anims.generateFrameNumbers("player-death", {
-        frames: [0, 1, 2, 3, 4, 5, 6, 7]
-      })
-    });
-
     // flying bat animation, right movement
     this.anims.create({
       key: "fly-right",
@@ -156,7 +154,7 @@ class FirstLevel extends Phaser.Scene {
     // =======================
 
     // add the player to the level, set physics
-    this.player = this.physics.add.sprite(50, 300, "player-idle", 0);
+    this.player = this.physics.add.sprite(50, 50, "player-idle", 0);
 
     // player will not be able to go out of bounds
     this.player.setCollideWorldBounds(true);
@@ -178,7 +176,7 @@ class FirstLevel extends Phaser.Scene {
     // =======================
 
     // create the score text which appears at the top right corner of the screen
-    this.scoreText = this.add.text(370, 25, "Stars: 0", {
+    this.scoreText = this.add.text(370, 25, ("Stars: " + this.score), {
       fontSize: "16px",
       fill: "#000000"
     });
@@ -260,7 +258,6 @@ class FirstLevel extends Phaser.Scene {
     finalStar.anims.play("spin", true);
     this.physics.add.overlap(this.player, finalStar, collectFinalStar, null, this);
 
-
     // =======================
     // USER INPUT
     // =======================
@@ -302,7 +299,7 @@ class FirstLevel extends Phaser.Scene {
     pitObjects.forEach(pitObject => {
       // use an arbitrary image for pitfall
       this.pitfall = this.physics.add.sprite(pitObject.x, pitObject.y, "danger");
-      this.pitfall.visible = false;
+      this.pitfall.visible = true;
       this.pitfalls.add(this.pitfall);
     });
 
@@ -351,7 +348,6 @@ class FirstLevel extends Phaser.Scene {
     // allow bats to collide with level and player
     this.physics.add.collider(this.bats, obstacles);
     this.physics.add.collider(this.player, this.bats, collideBat, null, this);
-
   }
   // CREATE ENDS HERE
 
@@ -428,14 +424,14 @@ class FirstLevel extends Phaser.Scene {
     // =======================
     // LEVEL COMPLETE
     // =======================
-
-    if (this.levelComplete === true) {
-      // redirect to new game
-      this.time.delayedCall(500, function () {
-        this.levelComplete = false;
-        this.scene.start("Level02", this.score);
-      }, [], this);
-    }
+    // 
+    // if (this.levelComplete === true) {
+    //   // redirect to new game
+    //   this.time.delayedCall(500, function () {
+    //     this.levelComplete = false;
+    //     this.scene.start("Level02");
+    //   }, [], this);
+    // }
 
     // =======================
     // GAME OVER
@@ -453,7 +449,7 @@ class FirstLevel extends Phaser.Scene {
     };
 
   };
-  // UPDATE ENDS HERE
+
 }
 
-export default FirstLevel;
+export default SecondLevel;

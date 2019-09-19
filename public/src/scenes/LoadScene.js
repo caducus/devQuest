@@ -17,6 +17,7 @@ class LoadScene extends Phaser.Scene {
     this.load.image("tiles", "../assets/map/devQuest-tileset.png");
     this.load.image("stars", "../assets/map/star.png");
     this.load.tilemapTiledJSON("level1", "../assets/map/level-01.json");
+    this.load.tilemapTiledJSON("level2", "../assets/map/level-02.json");
     // images: audio volume
     this.load.image("vol", "../assets/image/vol.png");
     this.load.image("vol_up", "../assets/image/vol_up.png");
